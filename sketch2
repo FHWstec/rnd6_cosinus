@@ -48,12 +48,7 @@ void setup()
   pinMode(4, OUTPUT);
   pinMode(3, OUTPUT);
   pinMode(2, INPUT);
-  randomSeed(analogRead(2));
-  Serial.begin(Ai);
-}
-
-void loop()
-{
+  
   digitalWrite(9, HIGH);
   digitalWrite(8, HIGH);
   digitalWrite(7, HIGH);
@@ -71,6 +66,12 @@ void loop()
   digitalWrite(8, LOW);
   digitalWrite(9, LOW);
   
+  randomSeed(analogRead(2));
+  Serial.begin(Ai);
+}
+
+void loop()
+{
   buttonState = digitalRead(buttonPin);
   if (buttonState == HIGH){
     rnd = random(1, 7);
