@@ -45,14 +45,14 @@ void setup()
   //pinMode(buttonPin, INPUT_PULLUP);
   
   Serial.println("Test LEDs");
-  digitalWrite(LEDpin_3, HIGH); // Mitte 			  | grau
-  digitalWrite(LEDpin_4, HIGH); // Links unten 	| blau
-  digitalWrite(LEDpin_5, HIGH); // Mitte unten		| türkis	
-  digitalWrite(LEDpin_6, HIGH); // Rechts unten	| grün
-  digitalWrite(LEDpin_7, HIGH); // Rechts oben		| gelb
-  digitalWrite(LEDpin_8, HIGH); // Mitte oben		| orange
-  digitalWrite(LEDpin_9, HIGH); // Links oben		| weiss
-  delay(100); 			     // Blink
+  digitalWrite(LEDpin_3, HIGH); // Mitte 			| grau
+  digitalWrite(LEDpin_4, HIGH); // Links unten 			| blau
+  digitalWrite(LEDpin_5, HIGH); // Mitte unten			| türkis	
+  digitalWrite(LEDpin_6, HIGH); // Rechts unten			| grün
+  digitalWrite(LEDpin_7, HIGH); // Rechts oben			| gelb
+  digitalWrite(LEDpin_8, HIGH); // Mitte oben			| orange
+  digitalWrite(LEDpin_9, HIGH); // Links oben			| weiss
+  delay(time/10); 			// Blink
   digitalWrite(LEDpin_9, LOW);
   digitalWrite(LEDpin_8, LOW);
   digitalWrite(LEDpin_7, LOW);
