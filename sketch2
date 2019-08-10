@@ -1,0 +1,118 @@
+// https://create.arduino.cc/editor/cosinus/d2db0870-a665-4a2a-84b6-7a58061122de/preview
+
+/*
+Dieses Programm soll über einen Taster einen Zufallsgenerator für 6 LED's auslösen, sodass diese darauffolgend die jeweilige Zahl
+zwischen 1 und 6 darstellen. Eine siebte LED stellt den Status der Eingabe und des Zufallsgenerators dar.
+
+Zum Schluss erfragt eine Schleife um herauszufinden, was gerade dargestellt oder verarbeitet wird.
+
+Der Sketch verwendet 3582 Bytes (11%) des Programmspeicherplatzes. Das Maximum sind 32256 Bytes.
+Globale Variablen verwenden 239 Bytes (11%) des dynamischen Speichers, 1809 Bytes für lokale Variablen verbleiben. Das Maximum sind 2048 Bytes.
+
+*/
+int time = 2500;
+int buttonPin = 2;
+int buttonState;
+long rnd;
+
+byte Ableseintervall;
+byte Ai = 9600; //ms Ableseintervall
+//      = 10000;
+
+int Ablesefrequenz;
+int /*const*/ Af = 9600; // in Baud; Vin
+
+int LEDpin_0 = 9;
+int LEDpin_1 = 8;
+int LEDpin_2 = 7;
+int LEDpin_3 = 6;
+int LEDpin_4 = 5;
+int LEDpin_5 = 4;
+int LEDpin_6 = 3;
+
+void setup()
+{
+  Serial.available();
+  Serial.begin(Ai);
+  while (!Serial) {
+                    Serial.print("Serielle Verbindung wird hergestellt. Bitte warten . . .");
+                    delay(420);
+                    Serial.flush();
+                    Serial.begin(Af);
+                  }
+  pinMode(9, OUTPUT);
+  pinMode(8, OUTPUT);
+  pinMode(7, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(5, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(2, INPUT);
+  
+  digitalWrite(9, HIGH);
+  digitalWrite(8, HIGH);
+  digitalWrite(7, HIGH);
+  digitalWrite(6, HIGH);
+  digitalWrite(5, HIGH);
+  digitalWrite(4, HIGH);
+  digitalWrite(3, HIGH);
+  Serial.println("Test LEDs");
+  delay(time); // Wait for 3000 millisecond(s)
+  digitalWrite(3, LOW);
+  digitalWrite(4, LOW);
+  digitalWrite(5, LOW);
+  digitalWrite(6, LOW);
+  digitalWrite(7, LOW);
+  digitalWrite(8, LOW);
+  digitalWrite(9, LOW);
+  
+  randomSeed(analogRead(2));
+  Serial.begin(Ai);
+}
+
+void loop()
+{
+  buttonState = digitalRead(buttonPin);
+  if (buttonState == HIGH){
+    rnd = random(1, 7);
+    if (rnd == 1){
+      digitalWrite (LEDpin_6, HIGH);
+      delay (time);
+    }
+    if (rnd == 2){
+      digitalWrite ((LEDpin_1, HIGH), (LEDpin_4));;
+      delay (time);
+    }
+    if (rnd == 3){
+      digitalWrite ((LEDpin_1, HIGH), (LEDpin_6, HIGH));
+      digitalWrite (LEDpin_4, HIGH);
+      delay (time);
+    }
+    if (rnd == 4){
+      digitalWrite ((LEDpin_0, HIGH), (LEDpin_2, HIGH));
+      digitalWrite ((LEDpin_5, HIGH), (LEDpin_3, HIGH));
+      delay (time);
+    }
+    if (rnd == 5){
+      digitalWrite ((LEDpin_0, HIGH), (LEDpin_2, HIGH));
+      digitalWrite ((LEDpin_5, HIGH), (LEDpin_3, HIGH));
+      digitalWrite (LEDpin_6, HIGH);
+      delay (time);
+   }
+   if (rnd == 6){
+      digitalWrite ((LEDpin_0, HIGH), (LEDpin_2, HIGH));
+      digitalWrite ((LEDpin_5, HIGH), (LEDpin_3, HIGH));
+      digitalWrite ((LEDpin_1, HIGH), (LEDpin_4));
+      delay (time);
+   }
+  }
+  delay(time); // Wait for 3000 millisecond(s)
+  digitalWrite(3, LOW);
+  digitalWrite(4, LOW);
+  digitalWrite(5, LOW);
+  digitalWrite(6, LOW);
+  digitalWrite(7, LOW);
+  digitalWrite(8, LOW);
+  digitalWrite(9, LOW);
+  Serial.flush();
+}
